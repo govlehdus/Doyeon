@@ -1,9 +1,8 @@
+#First change the string to alphanumeric and lower case. Then check with reversed string to find out
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        
-        b = ''.join(x for x in s if x.isalnum()).lower()
-        return b == b[::-1]
-
+        s = [i for i in s.lower() if i.isalnum()]
+        return s == s[::-1]
 #Using Two pointers
 class Solution:
     def isPalindrome(self, s: str) -> bool:
