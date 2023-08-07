@@ -1,12 +1,17 @@
+"""Using two pointers, I will have left and right pointers, and by moving left or right pointers one, check the maximum container.
+"""
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        l,r = 0 ,len(height)-1
-        maxnum = 0
+        l = 0
+        r = len(height)-1
+        res = 0
         while r>l:
-            if height[l] >= height[r]:
-                maxnum = max((r-l) * height[r], maxnum)
+            if height[l] > height[r]:
+                count = min(height[l], height[r]) * (r-l)
+                res = max(res,count)
                 r -=1
             else:
-                maxnum = max((r-l) * height[l],maxnum)
+                count = min(height[l], height[r]) * (r-l)
+                res = max(res,count)
                 l +=1
-        return maxnum
+        return res
