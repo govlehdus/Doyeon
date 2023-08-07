@@ -1,10 +1,11 @@
+#First I try to iterate it one time with one constant memory. I choose to make a dictionary to store the index and value.
+#While iterating through the list, I check the target-value is in the dictionary or not, and if it it there, return the indexes.
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        l,r = 0,len(numbers)-1
-        while r>l:
-            if target > numbers[l] + numbers[r]:
-                l +=1
-            elif target < numbers[l] + numbers[r]:
-                r -=1
+        dic = {}
+        for i, value in enumerate(numbers):
+            key = target - value
+            if key in dic:
+                return [dic[key]+1 , i+1]
             else:
-                return [l+1,r+1]
+                dic[value] = i
