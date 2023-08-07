@@ -1,22 +1,25 @@
+"""First since it need 3 numbers, sort the list, and iterate it over while having left and right pointer,
+so I can check 3 values to know that the sum of the numbers is 0.
+"""
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
         nums.sort()
-        lst = []
-        for i in range(len(nums)-2):
-            target = 0 - nums[i]
-            l,r = i+1,len(nums)-1
+        for i in range(0, len(nums)-2):
+            if nums[i] > 0:
+                break
+            l = i+1
+            r = len(nums)-1
+            target = 0- nums[i]
             while r>l:
-                added = nums[r] + nums[l]
-                if added >target:
-                    r -= 1
-                elif added < target:
-                    l += 1
+                if nums[r] + nums[l] < target:
+                    l +=1
+                elif nums[r] + nums[l] > target:
+                    r -=1
                 else:
-                    if [nums[i],nums[l],nums[r]] in lst:
-                        l +=1
-                        
+                    if [nums[i],nums[l],nums[r]] not in res:
+                        res.append([nums[i],nums[l],nums[r]])
+                        l += 1
                     else:
-                        lst.append([nums[i],nums[l],nums[r]])
                         l +=1
-                        
-        return lst
+        return res
