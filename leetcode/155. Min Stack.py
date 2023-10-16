@@ -1,23 +1,23 @@
+#First having a two different stakcs to keep the minimum element in O(1) time. By checking whether new value is minimum or not and putting the value to 
+the end of the minstack, I can do the functions in constant time.
+
 class MinStack:
 
     def __init__(self):
         self.stack = []
-        self.minval = []
+        self.minstack = []
+
     def push(self, val: int) -> None:
         self.stack.append(val)
-        if not self.minval:
-            self.minval.append(val)
-        else:
-            if val < self.minval[-1]:
-                self.minval.append(val)
-            else:
-                self.minval.append(self.minval[-1])
+        val = min(val, self.minstack[-1] if self.minstack else val)
+        self.minstack.append(val)
+
     def pop(self) -> None:
         self.stack.pop()
-        self.minval.pop()
+        self.minstack.pop()
 
     def top(self) -> int:
         return self.stack[-1]
 
     def getMin(self) -> int:
-        return self.minval[-1]
+        return self.minstack[-1]
