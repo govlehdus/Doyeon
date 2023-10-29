@@ -1,23 +1,26 @@
+#Using two binary search, find the which row is the right row first, and then find the position of the target.
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        l,r = 0, len(matrix)-1
-        while l<=r:
-            m = (l+r)//2
-            if matrix[m][0] <= target <= matrix[m][-1]:
+        row = len(matrix[0])
+        column = len(matrix)
+        bottom, top = 0, column -1
+        while top >= bottom:
+            mid = bottom + (top- bottom)//2
+            if target > matrix[mid][row-1]:
+                bottom = mid+1
+            elif target < matrix[mid][0]:
+                top = mid -1
+            else:
                 break
-            elif matrix[m][0] > target:
+        
+        l,r = 0, row-1
+
+        while r >= l:
+            m = l + (r-l)//2
+            if matrix[mid][m] > target:
                 r = m -1
-            else:
+            elif matrix[mid][m] < target:
                 l = m +1
-
-        l,r = 0, len(matrix[m])-1
-        while l<=r:
-            mid = (l+r)//2
-            if matrix[m][mid] == target:
-                return True
-            elif matrix[m][mid] > target:
-                r = mid-1
             else:
-                l = mid+1
-
+                return True
         return False
