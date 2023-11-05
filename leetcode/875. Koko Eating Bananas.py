@@ -1,16 +1,18 @@
-import math
+#it is finding a number from 0 to the maximum number of the piles, so using binary search, we can find it.
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         l,r = 1, max(piles)
-        ans = max(piles)
-        while l <= r:
-            m = (l+r)//2
-            res = 0
+
+        while l <=r:
+            totaltime = 0
+            mid = (l+r)//2
+
             for p in piles:
-                res += math.ceil(p / m)
-            if res <= h:
-                ans = min(m,ans)
-                r = m - 1
+                totaltime += ceil(p/mid)
+            
+            if totaltime <= h:
+                res = mid
+                r = mid-1
             else:
-                l = m  +1 
-        return ans
+                l = mid +1
+        return res
