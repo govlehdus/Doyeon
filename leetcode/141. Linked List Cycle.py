@@ -1,3 +1,4 @@
+#If there is a cycle, when you move have two different head that move the list one time and two times, they will eventually meet.
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
