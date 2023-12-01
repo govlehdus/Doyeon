@@ -1,3 +1,4 @@
+#Can do recursive or iterative.
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -20,3 +21,8 @@ class Solution:
                     queue.append(node.right)
             res +=1
         return res
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return 1 +max(self.maxDepth(root.left), self.maxDepth(root.right))
