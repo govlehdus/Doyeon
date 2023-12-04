@@ -1,3 +1,5 @@
+#check whether both p and q are either bigger than root or less than root, and go to the children node in needed.
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -7,12 +9,13 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        curr = root
+        cur = root
 
-        while curr:
-            if curr.val > p.val and curr.val > q.val:
-                curr = curr.left
-            elif curr.val < p.val and curr.val < q.val:
-                curr = curr.right
+        while cur:
+            if p.val > cur.val and q.val > cur.val:
+                cur = cur.right
+            elif p.val < cur.val and q.val < cur.val:
+                cur = cur.left
             else:
-                return curr
+                return cur
+        
