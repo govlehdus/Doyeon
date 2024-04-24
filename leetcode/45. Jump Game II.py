@@ -1,10 +1,12 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
+        l, r = 0, 0
         res = 0
-        dp = [float('inf')] * len(nums)
-        dp[-1] = 1
-        for i in range(len(nums)-2,-1,-1):
-            for j in range(1,nums[i]+1):
-                if i+j < len(nums):
-                    dp[i] = min(dp[i], 1+ dp[i+j])
-        return dp[0]-1
+        while r < (len(nums) - 1):
+            maxJump = 0
+            for i in range(l, r + 1):
+                maxJump = max(maxJump, i + nums[i])
+            l = r + 1
+            r = maxJump
+            res += 1
+        return res
